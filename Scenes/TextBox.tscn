@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://sf5pjce034ms"]
+[gd_scene load_steps=3 format=3 uid="uid://sf5pjce034ms"]
+
+[ext_resource type="Script" uid="uid://d1qopjqp7mbw3" path="res://Scenes/TextBox.cs" id="1_p7q1j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sbff"]
 bg_color = Color(0.98655826, 0.11241614, 0.99999946, 1)
@@ -8,9 +10,11 @@ border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0, 0, 0, 1)
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="TextoBox" type="CanvasLayer"]
+script = ExtResource("1_p7q1j")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextBoxContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_top = 0.9521605
 anchor_right = 1.0
@@ -24,12 +28,12 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="TextBoxContainer"]
 modulate = Color(4.1724997, 18.892157, 18.892157, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1sbff")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="TextBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,28 +45,31 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/MarginContainer"]
+[node name="Panel" type="Panel" parent="TextBoxContainer/Panel/MarginContainer"]
 visible = false
 modulate = Color(18.892157, 18.892157, 18.892157, 1)
 self_modulate = Color(0.90359825, 0.90359825, 0.9035982, 1)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Text" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="Text" type="Label" parent="TextBoxContainer/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(18.892157, 18.892157, 18.892157, 1)
 theme_override_font_sizes/font_size = 28
-text = "Placeholder text!"
+text = "Placeholder text! "
 autowrap_mode = 3
+text_overrun_behavior = 2
 
-[node name="End" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="EndText" type="Label" parent="TextBoxContainer/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)

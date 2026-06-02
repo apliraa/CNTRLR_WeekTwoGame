@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccg2etaxbpcxt"]
+
+[ext_resource type="PackedScene" uid="uid://dct6kk7cyhpr6" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://sf5pjce034ms" path="res://Scenes/TextBox.tscn" id="2_qxrlw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(576.5, 20)
+
+[node name="game" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(10, 11)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(277.75, 49)
+shape = SubResource("RectangleShape2D_qxrlw")
+
+[node name="TextBox" parent="." instance=ExtResource("2_qxrlw")]
+visible = false
