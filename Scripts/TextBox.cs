@@ -17,6 +17,7 @@ public partial class TextBox : CanvasLayer
 	
 	private TextBoxState currentState = TextBoxState.Idle;
 	private Queue<string> dialogueQueue = new Queue<string>();
+	public bool TextBoxCanOpen => currentState != TextBoxState.Idle;
 	
 	public override void _Ready(){
 		
@@ -27,13 +28,9 @@ public partial class TextBox : CanvasLayer
 		endText = GetNode<Label>("%EndText");
 		HideTextBox();
 		
-		string[] dialogoDeTeste = new string[] {
-			"Primeira linha do diálogo!",
-			"Segunda linha... O sistema de fila está funcionando.",
-			"Terceira e última linha. Até mais!"
-		};
-		StartDialogue(dialogoDeTeste);		
-	}
+		}
+			
+	
 
 	
 	public override void _Process(double delta){

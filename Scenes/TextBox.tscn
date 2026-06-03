@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://sf5pjce034ms"]
 
-[ext_resource type="Script" uid="uid://d1qopjqp7mbw3" path="res://Scenes/TextBox.cs" id="1_p7q1j"]
+[ext_resource type="Script" uid="uid://d1qopjqp7mbw3" path="res://Scripts/TextBox.cs" id="1_p7q1j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sbff"]
 bg_color = Color(0.98655826, 0.11241614, 0.99999946, 1)
@@ -10,7 +10,7 @@ border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0, 0, 0, 1)
 
-[node name="TextoBox" type="CanvasLayer"]
+[node name="TextoBox" type="CanvasLayer" groups=["UI"]]
 script = ExtResource("1_p7q1j")
 
 [node name="TextBoxContainer" type="MarginContainer" parent="."]

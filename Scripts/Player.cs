@@ -11,11 +11,10 @@ public partial class Player : CharacterBody2D
 	{
 		//movimentação
 		Vector2 velocity = Velocity; //variavel do godot (Velocity)
-		Vector2 direction = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");		
-	
-		if (direction != Vector2.Zero){velocity.X = direction.X * speed;}
-		else{velocity.X = 0f;}
-		
+		float direction = Input.GetAxis("MoveLeft", "MoveRight");	
+			
+		if (direction != 0f){ velocity.X = direction * speed; }
+		else{ velocity.X = 0f; }
 		
 		//gravidade no pulo
 		if (!IsOnFloor()){ velocity.Y += gravity * (float)delta; }

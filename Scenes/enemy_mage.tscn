@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl0bglq8rpj3p"]
+
+[ext_resource type="Texture2D" uid="uid://wt0f0nra4loh" path="res://Assets/icon.svg" id="1_mrqhk"]
+[ext_resource type="Script" uid="uid://cjyktqs4rpxv2" path="res://Scripts/EnemyMage.cs" id="1_pnf83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnf83"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl1dm"]
+
+[node name="EnemyMage" type="StaticBody2D"]
+script = ExtResource("1_pnf83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.09765628, 0.09765628)
+texture = ExtResource("1_mrqhk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pnf83")
+
+[node name="TalkBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkBox"]
+shape = SubResource("RectangleShape2D_vl1dm")
+
+[connection signal="body_entered" from="TalkBox" to="." method="_on_talk_box_body_entered"]
+[connection signal="body_exited" from="TalkBox" to="." method="_on_talk_box_body_exited"]
