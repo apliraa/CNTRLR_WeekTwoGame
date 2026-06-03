@@ -3,6 +3,10 @@ using System;
 
 public partial class EnemyMage : StaticBody2D 
 {
+	[Export] public Color mageColor = new Color(1, 1, 1);
+	[Export] public int mageID = 1;
+	private int mageDialogueState = 0;
+	
 	private bool playerInArea = false;
 	private TextBox sceneTextBox;
 	private GameManager gameManager;
@@ -13,6 +17,7 @@ public partial class EnemyMage : StaticBody2D
 		sceneTextBox= GetTree().GetFirstNodeInGroup("UI") as TextBox;
 		gameManager = GetNode<GameManager>("/root/GameManager") ;
 		talkBoxCollision = GetNode<CollisionShape2D>("TalkBox/CollisionShape2D");
+		GetNode<Sprite2D>("Sprite2D").Modulate = mageColor;
 		
 	}
 
@@ -21,7 +26,6 @@ public partial class EnemyMage : StaticBody2D
 		if (body is Player)
 		{
 			playerInArea = true;
-			GD.Print("Player chegou perto do NPC!");
 		}
 	}
 
@@ -44,23 +48,38 @@ public partial class EnemyMage : StaticBody2D
 
 	private string[] CurrentDialogue()
 	{
-		switch (gameManager.eventNumber)
+		if(mageID == 1){
+		switch (mageDialogueState)
 		{
+			case 0:
+				mageDialogueState = 1;
+				return new string[] { 
+					"Olá, Mago Fracote.",
+					"Preparado para sofrer?!",
+					"Muahahahahahaha!!"
+				};
 			case 1:
 				return new string[] { 
-					"Olá, forasteiro!", 
-					"Eu perdi minha espada na floresta.", 
-					"Você poderia encontrá-la para mim?" ,
-				};
-			case 2:
-				return new string[] { 
-					"Pelos deuses! Você a encontrou!", 
-                    "Muito obrigado, pegue este ouro como recompensa." 
+					"Você já me derrotou...",
+					"Vá embora!"
 				};
 			default:
-				return new string[] { 
-                    "Um belo dia para descansar, não acha?" 
-				};
+			   	 return new string[] { "." };
+			}
 		}
+		
+		if(mageID == 2){
+			switch(mageDialogueState){
+				case 0:
+					return new string[]{
+						"Bom dia, amigo.",
+						"Vamos treinar?"
+					};
+				default:
+					return new string[] { "." };
+			}
+		}
+		return new string[] { "Erro: Mago ID não encontrado." };
+		
 	}
 }
