@@ -1,85 +1,106 @@
 using Godot;
-using System;
 
-public partial class EnemyMage : StaticBody2D 
+
+public partial class EnemyMage : StaticBody2D
 {
-	[Export] public Color mageColor = new Color(1, 1, 1);
-	[Export] public int mageID = 1;
-	private int mageDialogueState = 0;
-	
-	private bool playerInArea = false;
-	private TextBox sceneTextBox;
-	private GameManager gameManager;
-	private CollisionShape2D talkBoxCollision;
+	//Inspector 
 
+	[ExportGroup("Visual")]
+	[Export] public Color mageColor = new Color(1, 1, 1);
+
+	[ExportGroup("Diálogo")]
+	[Export] public DialogueData dialogueData;
+	[Export] public bool dialogueRepeatable = false;
+
+	[ExportGroup("Stats de Batalha")]
+	[Export] public int maxHp            = 100;
+	[Export] public int maxMp            = 30;
+	[Export] public int attackPower      = 25;
+	[Export] public int mpCostPerShot    = 10;
+	[Export] public int mpRechargeAmount = 10;
+
+	//Runtime 
+	public int currentHp { get; set; }
+	public int currentMp { get; set; }
+
+	//Referências 
+	protected Sprite2D         _sprite;
+	protected DialogueCaller   _dialogueCaller;
+	protected BattleController _battleController;
+
+	//Inicialização 
 	public override void _Ready()
 	{
-		sceneTextBox= GetTree().GetFirstNodeInGroup("UI") as TextBox;
-		gameManager = GetNode<GameManager>("/root/GameManager") ;
-		talkBoxCollision = GetNode<CollisionShape2D>("TalkBox/CollisionShape2D");
-		GetNode<Sprite2D>("Sprite2D").Modulate = mageColor;
-		
+		currentHp = maxHp;
+		currentMp = maxMp;
+
+		_sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+		if (_sprite != null) _sprite.Modulate = mageColor;
+
+		_dialogueCaller = GetNodeOrNull<DialogueCaller>("DialogueCaller");
+		if (_dialogueCaller != null)
+		{
+			_dialogueCaller.SetDialogueData(dialogueData, dialogueRepeatable);
+			_dialogueCaller.DialogueSequenceFinished += _OnDialogueFinished;
+		}
+		else
+			GD.PushWarning($"[EnemyMage] '{Name}': 'DialogueCaller' não encontrado.");
+
+		_battleController = GetNodeOrNull<BattleController>("BattleController");
+		if (_battleController == null)
+			GD.PushWarning($"[EnemyMage] '{Name}': 'BattleController' não encontrado.");
+
+		OnReady();
 	}
 
-	public void _on_talk_box_body_entered(Node2D body)
+	protected virtual void OnReady() { }
+
+
+	public virtual int TakeDamage(int damage)
 	{
-		if (body is Player)
-		{
-			playerInArea = true;
-		}
+		currentHp = Mathf.Max(0, currentHp - damage);
+		return damage;
 	}
 
-	public void _on_talk_box_body_exited(Node2D body)
+	public virtual int GetAttackValue() => attackPower;
+
+	public virtual void SpendMp()
 	{
-		if (body is Player)
-		{
-			playerInArea = false;
-		}
+		currentMp = Mathf.Max(0, currentMp - mpCostPerShot);
 	}
 
-	public override void _Input(InputEvent @event)
+	public virtual void Recharge()
 	{
-		if (playerInArea && @event.IsActionPressed("Interact") && !sceneTextBox.TextBoxCanOpen)
-		{
-			string[] currentDialogue = CurrentDialogue();
-			sceneTextBox.StartDialogue(currentDialogue);
-		}
+		currentMp = Mathf.Min(maxMp, currentMp + mpRechargeAmount);
 	}
 
-	private string[] CurrentDialogue()
+	// ── Decisão do enemy no combate
+	public virtual BattleAction ChooseAction()
 	{
-		if(mageID == 1){
-		switch (mageDialogueState)
+		if (currentMp < mpCostPerShot)
 		{
-			case 0:
-				mageDialogueState = 1;
-				return new string[] { 
-					"Olá, Mago Fracote.",
-					"Preparado para sofrer?!",
-					"Muahahahahahaha!!"
-				};
-			case 1:
-				return new string[] { 
-					"Você já me derrotou...",
-					"Vá embora!"
-				};
-			default:
-			   	 return new string[] { "." };
-			}
+			GD.Print($"[{Name}] Sem mana para atacar.");
+			return GD.Randf() < 0.5f ? BattleAction.Defend : BattleAction.Recharge;
 		}
-		
-		if(mageID == 2){
-			switch(mageDialogueState){
-				case 0:
-					return new string[]{
-						"Bom dia, amigo.",
-						"Vamos treinar?"
-					};
-				default:
-					return new string[] { "." };
-			}
+
+		float roll = GD.Randf();
+		if (roll < 0.55f) return BattleAction.Attack;
+		if (roll < 0.80f) return BattleAction.Defend;
+		return BattleAction.Recharge;
+	}
+
+	//Começar batalha
+	private void _OnDialogueFinished()
+	{
+		if (_battleController == null) return;
+
+		var player = GetTree().GetFirstNodeInGroup("player") as Player;
+		if (player == null)
+		{
+			GD.PushError("[EnemyMage] Player não encontrado no grupo 'player'.");
+			return;
 		}
-		return new string[] { "Erro: Mago ID não encontrado." };
-		
+
+		_battleController.StartBattle(player, this);
 	}
 }

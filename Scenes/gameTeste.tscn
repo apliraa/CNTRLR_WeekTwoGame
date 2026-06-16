@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccg2etaxbpcxt"]
+
+[ext_resource type="PackedScene" uid="uid://dct6kk7cyhpr6" path="res://Scenes/player.tscn" id="1_mldaf"]
+[ext_resource type="PackedScene" uid="uid://dl0bglq8rpj3p" path="res://Scenes/enemy_mage.tscn" id="2_lg4ln"]
+[ext_resource type="PackedScene" uid="uid://dy6yft12c30pc" path="res://Scenes/door.tscn" id="3_2kus7"]
+[ext_resource type="Resource" uid="uid://yc8ihmk1me4o" path="res://Dialogues/mage01Teste.tres" id="3_7de7v"]
+[ext_resource type="PackedScene" uid="uid://sf5pjce034ms" path="res://Scenes/TextBox.tscn" id="4_7de7v"]
+[ext_resource type="Resource" uid="uid://beb3eb76bniy7" path="res://Dialogues/mago02Teste.tres" id="6_x856s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(576.5, 20)
+
+[node name="gameTeste" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("1_mldaf")]
+position = Vector2(10, 11)
+
+[node name="EnemyMage" parent="." instance=ExtResource("2_lg4ln")]
+position = Vector2(416, 27)
+dialogueData = ExtResource("3_7de7v")
+
+[node name="Door" parent="." instance=ExtResource("3_2kus7")]
+position = Vector2(539, 26)
+myDoorID = 1
+nextLevelNumber = 2
+targetDoorID = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(277.75, 49)
+shape = SubResource("RectangleShape2D_qxrlw")
+
+[node name="TextoBox" parent="." instance=ExtResource("4_7de7v")]
+
+[node name="EnemyMage2" parent="." instance=ExtResource("2_lg4ln")]
+position = Vector2(503, 28)
+dialogueData = ExtResource("6_x856s")

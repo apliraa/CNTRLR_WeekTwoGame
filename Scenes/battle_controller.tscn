@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://mvn4gh00ypl3"]
+
+[ext_resource type="Script" uid="uid://bo4o65qkke0ls" path="res://Scripts/BattleController.cs" id="1_v52eg"]
+
+[node name="BattleController" type="Node2D"]
+script = ExtResource("1_v52eg")
+TurnTimeLimit = 600.0

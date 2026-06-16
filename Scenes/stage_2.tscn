@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://4ppw2xapxbbn"]
+
+[ext_resource type="PackedScene" uid="uid://dy6yft12c30pc" path="res://Scenes/door.tscn" id="1_qm6rm"]
+[ext_resource type="PackedScene" uid="uid://dct6kk7cyhpr6" path="res://Scenes/player.tscn" id="2_0kk3p"]
+[ext_resource type="PackedScene" uid="uid://sf5pjce034ms" path="res://Scenes/TextBox.tscn" id="3_eoyph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt8b1"]
+size = Vector2(602, 20)
+
+[node name="gameTeste2" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(239, 43)
+shape = SubResource("RectangleShape2D_kt8b1")
+
+[node name="Door" parent="." instance=ExtResource("1_qm6rm")]
+position = Vector2(43, 15)
+myDoorID = 2
+nextLevelNumber = 1
+targetDoorID = 1
+
+[node name="Player" parent="." instance=ExtResource("2_0kk3p")]
+position = Vector2(127, 10)
+
+[node name="TextoBox" parent="." instance=ExtResource("3_eoyph")]

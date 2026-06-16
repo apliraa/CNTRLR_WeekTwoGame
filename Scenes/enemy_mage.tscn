@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl0bglq8rpj3p"]
+[gd_scene load_steps=7 format=3 uid="uid://dl0bglq8rpj3p"]
 
 [ext_resource type="Texture2D" uid="uid://wt0f0nra4loh" path="res://Assets/icon.svg" id="1_mrqhk"]
 [ext_resource type="Script" uid="uid://cjyktqs4rpxv2" path="res://Scripts/EnemyMage.cs" id="1_pnf83"]
+[ext_resource type="PackedScene" uid="uid://rccg056qkj18" path="res://Scenes/dialogue_caller.tscn" id="3_vl1dm"]
+[ext_resource type="PackedScene" uid="uid://mvn4gh00ypl3" path="res://Scenes/battle_controller.tscn" id="4_upick"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnf83"]
 size = Vector2(12, 12)
@@ -23,5 +25,12 @@ shape = SubResource("RectangleShape2D_pnf83")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TalkBox"]
 shape = SubResource("RectangleShape2D_vl1dm")
 
-[connection signal="body_entered" from="TalkBox" to="." method="_on_talk_box_body_entered"]
-[connection signal="body_exited" from="TalkBox" to="." method="_on_talk_box_body_exited"]
+[node name="DialogueCaller" parent="." instance=ExtResource("3_vl1dm")]
+
+[node name="BattleController" parent="." instance=ExtResource("4_upick")]
+
+[node name="BattlePosition" type="Marker2D" parent="."]
+position = Vector2(-90, 0)
+
+[connection signal="body_entered" from="TalkBox" to="DialogueCaller" method="_on_talk_box_body_entered"]
+[connection signal="body_exited" from="TalkBox" to="DialogueCaller" method="_on_talk_box_body_exited"]

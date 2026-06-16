@@ -1,16 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://dct6kk7cyhpr6"]
+[gd_scene load_steps=5 format=3 uid="uid://dct6kk7cyhpr6"]
 
 [ext_resource type="Script" uid="uid://cewxbaioih126" path="res://Scripts/Player.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://wt0f0nra4loh" path="res://Assets/icon.svg" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://c344lkqfw235t" path="res://Assets/IdlePlayer-20260610-162124-frame1.png" id="2_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f60y1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f60y1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.13671875, 0.13671875)
-texture = ExtResource("1_v0iea")
+position = Vector2(-0.50000095, 1.5000019)
+scale = Vector2(1.03125, 1.03125)
+texture = ExtResource("2_cvnsp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.8, 1.8)
+limit_left = -1152
+limit_top = -648
+limit_right = 1152
+limit_bottom = 648
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]

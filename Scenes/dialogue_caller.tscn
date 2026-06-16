@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rccg056qkj18"]
+
+[ext_resource type="Script" uid="uid://ccypblk46avj" path="res://Scripts/DialogueCaller.cs" id="1_ewmi5"]
+
+[node name="DialogueCaller" type="Node2D"]
+script = ExtResource("1_ewmi5")
