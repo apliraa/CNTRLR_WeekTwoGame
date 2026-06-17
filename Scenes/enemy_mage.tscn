@@ -1,9 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl0bglq8rpj3p"]
+[gd_scene load_steps=14 format=3 uid="uid://dl0bglq8rpj3p"]
 
-[ext_resource type="Texture2D" uid="uid://wt0f0nra4loh" path="res://Assets/icon.svg" id="1_mrqhk"]
 [ext_resource type="Script" uid="uid://cjyktqs4rpxv2" path="res://Scripts/EnemyMage.cs" id="1_pnf83"]
+[ext_resource type="Texture2D" uid="uid://co2vp4f6qa0n3" path="res://Assets/IdlePlayer-20260610-162124-spritesheet.png" id="2_upick"]
 [ext_resource type="PackedScene" uid="uid://rccg056qkj18" path="res://Scenes/dialogue_caller.tscn" id="3_vl1dm"]
 [ext_resource type="PackedScene" uid="uid://mvn4gh00ypl3" path="res://Scenes/battle_controller.tscn" id="4_upick"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yy57"]
+atlas = ExtResource("2_upick")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwmqq"]
+atlas = ExtResource("2_upick")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5rbm"]
+atlas = ExtResource("2_upick")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o46bq"]
+atlas = ExtResource("2_upick")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i1hh"]
+atlas = ExtResource("2_upick")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyhq3"]
+atlas = ExtResource("2_upick")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pd1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yy57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwmqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5rbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o46bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i1hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyhq3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnf83"]
 size = Vector2(12, 12)
@@ -13,9 +63,11 @@ size = Vector2(12, 12)
 [node name="EnemyMage" type="StaticBody2D"]
 script = ExtResource("1_pnf83")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.09765628, 0.09765628)
-texture = ExtResource("1_mrqhk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.49999952, 0.5000012)
+sprite_frames = SubResource("SpriteFrames_4pd1p")
+animation = &"idle"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pnf83")

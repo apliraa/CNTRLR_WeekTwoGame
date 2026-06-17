@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://boxbnfnl1mgj2"]
+
+[ext_resource type="Script" uid="uid://7ob23tjaphet" path="res://Npc.cs" id="1_g6unj"]
+[ext_resource type="Texture2D" uid="uid://co2vp4f6qa0n3" path="res://Assets/IdlePlayer-20260610-162124-spritesheet.png" id="2_h1ryf"]
+[ext_resource type="PackedScene" uid="uid://rccg056qkj18" path="res://Scenes/dialogue_caller.tscn" id="3_1ig1v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xkex"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gudg"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi7up"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6nw3"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4syp"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f10bm"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcef7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xkex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gudg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi7up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6nw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4syp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f10bm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6unj"]
+size = Vector2(42, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1ryf"]
+
+[node name="NPC" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_g6unj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jcef7")
+animation = &"idle"
+flip_h = true
+
+[node name="DialogueCaller" parent="." instance=ExtResource("3_1ig1v")]
+
+[node name="Talkbox" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Talkbox"]
+shape = SubResource("RectangleShape2D_g6unj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h1ryf")
+
+[connection signal="body_entered" from="Talkbox" to="." method="_on_talkbox_body_entered"]
+[connection signal="body_exited" from="Talkbox" to="." method="_on_talkbox_body_exited"]
