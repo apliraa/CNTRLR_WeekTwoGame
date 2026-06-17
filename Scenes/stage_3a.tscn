@@ -93,7 +93,8 @@ tile_map_data = PackedByteArray("AAD/////AAAEAAIAAAD//wAAAAAEAAIAAAAAAP//AAAFAAI
 tile_set = SubResource("TileSet_e68fo")
 
 [node name="Door2" parent="." instance=ExtResource("2_sk3do")]
-position = Vector2(56, 13)
+z_index = 1
+position = Vector2(59, 10)
 myDoorID = 311
 nextLevelNumber = 2
 targetDoorID = 22
