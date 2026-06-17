@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=6 format=3 uid="uid://dnu0n5myew33d"]
+
+[ext_resource type="Script" uid="uid://b7s1w2ql27654" path="res://Scripts/DialogueLine.cs" id="1_3kn8q"]
+[ext_resource type="Script" uid="uid://hcjol550vevw" path="res://Scripts/DialogueData.cs" id="2_phk1a"]
+
+[sub_resource type="Resource" id="Resource_3kn8q"]
+script = ExtResource("1_3kn8q")
+text = "Este é um testinho de combate, use as informações do meu colega para lutar comigo!"
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[sub_resource type="Resource" id="Resource_phk1a"]
+script = ExtResource("1_3kn8q")
+text = "Por enquanto, as informações do combate estão dispostas apenas no console!"
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[sub_resource type="Resource" id="Resource_qf1wx"]
+script = ExtResource("1_3kn8q")
+text = "Vamos lá!"
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[resource]
+script = ExtResource("2_phk1a")
+lines = Array[ExtResource("1_3kn8q")]([SubResource("Resource_3kn8q"), SubResource("Resource_phk1a"), SubResource("Resource_qf1wx")])
+metadata/_custom_type_script = "uid://hcjol550vevw"

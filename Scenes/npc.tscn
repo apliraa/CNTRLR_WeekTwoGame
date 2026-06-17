@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://boxbnfnl1mgj2"]
 
-[ext_resource type="Script" uid="uid://7ob23tjaphet" path="res://Npc.cs" id="1_g6unj"]
+[ext_resource type="Script" uid="uid://7ob23tjaphet" path="res://Scripts/Npc.cs" id="1_g6unj"]
 [ext_resource type="Texture2D" uid="uid://co2vp4f6qa0n3" path="res://Assets/IdlePlayer-20260610-162124-spritesheet.png" id="2_h1ryf"]
 [ext_resource type="PackedScene" uid="uid://rccg056qkj18" path="res://Scenes/dialogue_caller.tscn" id="3_1ig1v"]
 

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dct6kk7cyhpr6" path="res://Scenes/player.tscn" id="2_0kk3p"]
 [ext_resource type="PackedScene" uid="uid://sf5pjce034ms" path="res://Scenes/TextBox.tscn" id="3_eoyph"]
 [ext_resource type="Texture2D" uid="uid://b4dtiwmskagky" path="res://Assets/WIPTileSetMageGame2.0-20260616-192925-frame0.png" id="4_wxne6"]
-[ext_resource type="Resource" uid="uid://irpn0ndlaxvl" path="res://Dialogues/mago03teste.tres" id="6_m6j64"]
+[ext_resource type="Resource" uid="uid://beb3eb76bniy7" path="res://Dialogues/mago02Teste.tres" id="6_j7yc3"]
 [ext_resource type="PackedScene" uid="uid://boxbnfnl1mgj2" path="res://Scenes/npc.tscn" id="7_i2od2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5wu1i"]
@@ -88,11 +88,11 @@ sources/0 = SubResource("TileSetAtlasSource_5wu1i")
 
 [node name="gameTeste2" type="Node2D"]
 
-[node name="Door" parent="." instance=ExtResource("1_qm6rm")]
+[node name="Door1" parent="." instance=ExtResource("1_qm6rm")]
 position = Vector2(44, 14)
-myDoorID = 2
+myDoorID = 21
 nextLevelNumber = 1
-targetDoorID = 1
+targetDoorID = 11
 
 [node name="Player" parent="." instance=ExtResource("2_0kk3p")]
 position = Vector2(47, -34)
@@ -104,5 +104,17 @@ tile_map_data = PackedByteArray("AAD/////AAAEAAIAAAD//wAAAAAEAAIAAAAAAP//AAAFAAI
 tile_set = SubResource("TileSet_i2od2")
 
 [node name="NPC" parent="." instance=ExtResource("7_i2od2")]
-position = Vector2(351, 23)
-dialogueData = ExtResource("6_m6j64")
+position = Vector2(251, 21)
+dialogueData = ExtResource("6_j7yc3")
+
+[node name="Door3a" parent="." instance=ExtResource("1_qm6rm")]
+position = Vector2(313, 15)
+myDoorID = 22
+nextLevelNumber = 31
+targetDoorID = 311
+
+[node name="Door3b" parent="." instance=ExtResource("1_qm6rm")]
+position = Vector2(379, 14)
+myDoorID = 23
+nextLevelNumber = 32
+targetDoorID = 321

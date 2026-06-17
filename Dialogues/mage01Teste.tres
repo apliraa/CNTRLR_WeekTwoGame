@@ -1,14 +1,29 @@
-[gd_resource type="Resource" script_class="DialogueData" load_steps=4 format=3 uid="uid://yc8ihmk1me4o"]
+[gd_resource type="Resource" script_class="DialogueData" load_steps=7 format=3 uid="uid://yc8ihmk1me4o"]
 
 [ext_resource type="Script" uid="uid://b7s1w2ql27654" path="res://Scripts/DialogueLine.cs" id="1_w1lm2"]
 [ext_resource type="Script" uid="uid://hcjol550vevw" path="res://Scripts/DialogueData.cs" id="2_uj5g0"]
 
 [sub_resource type="Resource" id="Resource_w1lm2"]
 script = ExtResource("1_w1lm2")
-text = "\"Oi bobão\""
+text = "Como pode perceber, este jogo ainda está sendo testado."
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[sub_resource type="Resource" id="Resource_uj5g0"]
+script = ExtResource("1_w1lm2")
+text = "Por enquanto é apenas um teste de sistemas..."
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[sub_resource type="Resource" id="Resource_7mkaw"]
+script = ExtResource("1_w1lm2")
+text = "Que serão muito úteis!"
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[sub_resource type="Resource" id="Resource_b7l7f"]
+script = ExtResource("1_w1lm2")
+text = "Aproveite!"
 metadata/_custom_type_script = "uid://b7s1w2ql27654"
 
 [resource]
 script = ExtResource("2_uj5g0")
-lines = Array[ExtResource("1_w1lm2")]([SubResource("Resource_w1lm2")])
+lines = Array[ExtResource("1_w1lm2")]([SubResource("Resource_w1lm2"), SubResource("Resource_uj5g0"), SubResource("Resource_7mkaw"), SubResource("Resource_b7l7f")])
 metadata/_custom_type_script = "uid://hcjol550vevw"

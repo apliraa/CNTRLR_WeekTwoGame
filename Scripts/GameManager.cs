@@ -10,10 +10,11 @@ public partial class GameManager : Node
 
 	public override void _Ready()
 	{
-		levelPaths.Add(1, "res://Scenes/gameTeste.tscn");
+		levelPaths.Add(1, "res://Scenes/stage_1.tscn");
 		levelPaths.Add(2, "res://Scenes/stage_2.tscn");
-
-		// levelPaths.Add(3, "res://Cenas/stage_3.tscn"); 
+		levelPaths.Add(31, "res://Scenes/stage_3a.tscn"); 
+		levelPaths.Add(32, "res://Scenes/stage_3b.tscn");
+		levelPaths.Add(4,  "res://Scenes/stage_4.tscn");  
 	}
 
 	// A porta vai chamar isso aqui!

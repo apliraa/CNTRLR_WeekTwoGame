@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=4 format=3 uid="uid://c4nph2nb6avv5"]
+
+[ext_resource type="Script" uid="uid://b7s1w2ql27654" path="res://Scripts/DialogueLine.cs" id="1_yfoy4"]
+[ext_resource type="Script" uid="uid://hcjol550vevw" path="res://Scripts/DialogueData.cs" id="2_1hbw1"]
+
+[sub_resource type="Resource" id="Resource_yfoy4"]
+script = ExtResource("1_yfoy4")
+text = "O combate vai ter diferentes dificuldades e mudança de complexidade!"
+metadata/_custom_type_script = "uid://b7s1w2ql27654"
+
+[resource]
+script = ExtResource("2_1hbw1")
+lines = Array[ExtResource("1_yfoy4")]([SubResource("Resource_yfoy4")])
+metadata/_custom_type_script = "uid://hcjol550vevw"
