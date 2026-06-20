@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bddy5ey1painp"
+path="res://.godot/imported/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music - Free Music (youtube).mp3-51a83d78d7e06ae320f835aef5dc45fd.mp3str"
+
+[deps]
+
+source_file="res://SFX/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music - Free Music (youtube).mp3"
+dest_files=["res://.godot/imported/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music - Free Music (youtube).mp3-51a83d78d7e06ae320f835aef5dc45fd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

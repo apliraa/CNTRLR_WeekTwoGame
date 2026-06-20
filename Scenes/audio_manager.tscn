@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce25mmdt2r2sh"]
+
+[ext_resource type="AudioStream" uid="uid://bddy5ey1painp" path="res://SFX/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music - Free Music (youtube).mp3" id="1_4tj6f"]
+[ext_resource type="Script" uid="uid://iym4guvip4h3" path="res://AudioManager.cs" id="2_hhwve"]
+
+[node name="AudioManager" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_4tj6f")
+volume_db = -15.053
+autoplay = true
+script = ExtResource("2_hhwve")

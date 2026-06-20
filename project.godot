@@ -18,6 +18,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 GameManager="*res://Scripts/GameManager.cs"
+AudioManager="*res://Scenes/audio_manager.tscn"
 
 [dotnet]
 
